@@ -35,7 +35,7 @@ const segmenter = new Intl.Segmenter(LANG, { granularity: "word" });
 async function mainThreadSearch(query: string): Promise<PageInfo[]> {
   const words = [...segmenter.segment(query)]
     .filter(({ isWordLike }) => isWordLike)
-    .map(({ segment }) => segment);
+    .map(({ segment }) => segment.toLowerCase());
   return db.map((entry) => {
     let score = 0;
     for (const word of words) {

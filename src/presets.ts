@@ -9,6 +9,7 @@ export const ContentTransform = {
    * to type the diacritics themselves. */
   RemoveDiacritics: (content: string): string =>
     content.normalize("NFKD").replaceAll(diacritics, ""),
+
   /** Lowercases everything. Searches become case-insensitive. */
   Lowercase: (content: string): string => content.toLowerCase(),
 };
@@ -18,30 +19,31 @@ export const DefaultContentTransforms = [
 ];
 
 const apostrophe = /'|\u{2019}/u;
+/** A list of basic word transforms. These apply to single words only. */
 export const WordTransform = {
+  /** Removes apostrophes from words, if appropriate. For example, will
+   * transform "They're" into "They" but will leave "A'uwe" as-is. */
   NoApostrophes: (word: string): string => {
     const parts = word.split(apostrophe);
     if (parts.length != 2) return word;
     const [main, suffix] = parts;
-    if (suffix.length > 3) return word;
+    if (suffix.length >= 3) return word;
     return main;
   },
-  NoPlurals: (word: string): string => {
-    if (!word.endsWith("s")) return word;
-    if (word.endsWith("sses")) return word;
-    if (word.endsWith("ss")) return word;
-    return word.slice(0, -1);
-  },
 };
+
+/** The default word transforms. */
 export const DefaultWordTransforms = [
   WordTransform.NoApostrophes,
-  WordTransform.NoPlurals,
 ];
 
+/** A collection of predefined weights, used in the defaults */
 export const Weights = {
   Ignores: { "style, script, noscript, pre, code, math, aside": 0 },
   Headers: { "h1": 10, "h2": 5, "h3": 2 },
 };
+
+/** The default weights. */
 export const DefaultWeights = {
   ...Weights.Ignores,
   ...Weights.Headers,

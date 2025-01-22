@@ -12,4 +12,6 @@ export {
   WordTransform,
 } from "./src/presets.ts";
 
-export declare function search(query: string): Promise<PageInfo>;
+/** The client-side search function. This takes a search string as input, and
+ * returns a promise with an array of matched pages. */
+export async function search(query: string): Promise<PageInfo[]>;

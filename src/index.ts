@@ -15,7 +15,7 @@ import {
   assembleClientSideScript,
 } from "./steps/index.ts";
 
-/** The main plugin function. */
+/** The main plugin function. Pass this to `eleventyConfig.addPlugin()` */
 export async function EleventySiteSearch(
   config: EleventyConfig,
   rawOptions?: Partial<EleventySiteSearchOptions>,
