@@ -11,7 +11,7 @@ declare const LOG_DB_ENTRIES: boolean;
 declare const PATH_PREFIX: string;
 
 if (LOG_DB_ENTRIES) {
-  const path = PATH_PREFIX + self.location.pathname;
+  const path = PATH_PREFIX + globalThis.location.pathname;
   const entry = db.find((entry) => entry.info.url == path);
   if (!entry) {
     console.log("eleventy-site-search: Page not indexed.");
@@ -59,11 +59,11 @@ async function mainThreadSearch(query: string): Promise<PageInfo[]> {
 const pending: Record<string, (results: PageInfo[]) => void> = {};
 let worker = null;
 if (!USE_MAIN_THREAD) {
-  if (self.WorkerGlobalScope && self instanceof WorkerGlobalScope) {
-    self.addEventListener("message", async (event: MessageEvent) => {
+  if (globalThis.WorkerGlobalScope && globalThis instanceof WorkerGlobalScope) {
+    globalThis.addEventListener("message", async (event: MessageEvent) => {
       const { query, uuid } = event.data;
       const results = await mainThreadSearch(query);
-      self.postMessage({ uuid, results });
+      globalThis.postMessage({ uuid, results });
     });
   } else {
     worker = new Worker(import.meta.url, { type: "module" });

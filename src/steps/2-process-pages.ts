@@ -10,7 +10,7 @@ export function processPages(
 ): Map<string, Tally> {
   const tallies = new Map();
   const wordTransforms = new Map();
-  const segmenter = self.Intl?.Segmenter
+  const segmenter = globalThis.Intl?.Segmenter
     ? new Intl.Segmenter(options.lang, { granularity: "word" })
     : new FallbackSegmenter();
   config.addTransform("site-search", function (this: any, content: string) {
