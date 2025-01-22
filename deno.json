@@ -1,0 +1,19 @@
+{
+  "name": "@vrugtehagel/eleventy-site-search",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
+  "publish": {
+    "include": ["src/**", "mod.ts", "README.md"]
+  },
+  "tasks": {
+    "check": "deno publish --dry-run --allow-dirty"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-explicit-any", "require-await"]
+    }
+  },
+  "compilerOptions": {
+    "lib": ["deno.worker"]
+  }
+}
