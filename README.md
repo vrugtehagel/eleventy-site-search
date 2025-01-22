@@ -28,11 +28,11 @@ import EleventySiteSearch from "@vrugtehagel/eleventy-site-search";
 export default function (eleventyConfig) {
   // …
   eleventyConfig.addPlugin(EleventySiteSearch, {
-    metadata: ['title', 'description'],
+    metadata: ["title", "description"],
     frequencyBias: .4,
-    manualTermMode: 'integrated',
+    manualTermMode: "integrated",
     cutoff: 20,
-    logDatabaseEntries: process.env.ELEVENTY_RUN_MODE != 'build',
+    logDatabaseEntries: process.env.ELEVENTY_RUN_MODE != "build",
   });
   // …
 }
