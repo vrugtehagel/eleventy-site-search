@@ -6,7 +6,7 @@
 
 Each document is read and analyzed. For each document, each word is assigned a
 relevancy score as a percentage (0-100), which depends on how often it occurs in
-the document, how often it occurs in _other_ documents. Words also get a
+the document, and how often it occurs in _other_ documents. Words also get a
 heightened relevancy score if they appear in the main title, other headers, or
 the URL. The relevancy score can then be interpreted as follows; if a word has a
 relevancy score of X%, then when searching for said word, the document is X%

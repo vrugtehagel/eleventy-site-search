@@ -7,10 +7,10 @@ export const ContentTransform = {
   /** Removes diacritics from characters. For example, "lämp" becomes "lamp".
    * Use this transform if and only if the target audience is expected _not_
    * to type the diacritics themselves. */
-  RemoveDiacritics: (content: string) =>
+  RemoveDiacritics: (content: string): string =>
     content.normalize("NFKD").replaceAll(diacritics, ""),
   /** Lowercases everything. Searches become case-insensitive. */
-  Lowercase: (content: string) => content.toLowerCase(),
+  Lowercase: (content: string): string => content.toLowerCase(),
 };
 export const DefaultContentTransforms = [
   ContentTransform.RemoveDiacritics,
@@ -19,14 +19,14 @@ export const DefaultContentTransforms = [
 
 const apostrophe = /'|\u{2019}/u;
 export const WordTransform = {
-  NoApostrophes: (word: string) => {
+  NoApostrophes: (word: string): string => {
     const parts = word.split(apostrophe);
     if (parts.length != 2) return word;
     const [main, suffix] = parts;
     if (suffix.length > 3) return word;
     return main;
   },
-  NoPlurals: (word: string) => {
+  NoPlurals: (word: string): string => {
     if (!word.endsWith("s")) return word;
     if (word.endsWith("sses")) return word;
     if (word.endsWith("ss")) return word;
