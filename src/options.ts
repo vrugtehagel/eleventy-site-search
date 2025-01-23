@@ -21,7 +21,7 @@ export type PageCrawlOptions = {
 
   /** If your site lives under a specific path on a domain, not at the top
    * level of the domain, provide the path to your site here. This makes sure
-   * the search results contain correct URLs. Defaults to `"/"`. */
+   * the search results contain correct URLs. Defaults to `""`. */
   pathPrefix: string;
 };
 
@@ -70,7 +70,7 @@ export type PagesProcessingOptions = {
 
   /** If your site lives under a specific path on a domain, not at the top
    * level of the domain, provide the path to your site here. This makes sure
-   * the search results contain correct URLs. Defaults to `"/"`. */
+   * the search results contain correct URLs. Defaults to `""`. */
   pathPrefix: string;
 };
 
@@ -98,8 +98,8 @@ export type DatabaseGeneratingOptions = {
    * This is the `"integrated"` mode. On the other hand, you might want to
    * prioritize manual terms (you did manually specify them after all). This
    * means generated terms are the first to get kicked out, and manually
-   * specified terms are guaranteed to end up in the index. Defaults to
-   * `"integrated"`. */
+   * specified terms are guaranteed to end up in the index. For this behavior,
+   * specify `"additive"`. Defaults to `"integrated"`. */
   manualTermMode: "additive" | "integrated";
 
   /** Specifies a minimum number of terms to index. This is useful if a page
@@ -153,7 +153,7 @@ export type ClientSideScriptOptions = {
 
   /** If your site lives under a specific path on a domain, not at the top
    * level of the domain, provide the path to your site here. This makes sure
-   * the search results contain correct URLs. Defaults to `"/"`. */
+   * the search results contain correct URLs. Defaults to `""`. */
   pathPrefix: string;
 };
 

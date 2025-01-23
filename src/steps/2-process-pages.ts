@@ -15,7 +15,7 @@ export function processPages(
     : new FallbackSegmenter();
   config.addTransform("site-search", function (this: any, content: string) {
     if (!this.page.outputPath.endsWith(".html")) return content;
-    const url = options.pathPrefix.replace(/^\/|\/$/, "") + this.page.url;
+    const url = options.pathPrefix.replace(/^\//, "") + this.page.url;
     const page = pages.get(url);
     if (!page) return content;
     const doc = HTMLParser.parse(content);

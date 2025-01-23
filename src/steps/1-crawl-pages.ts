@@ -14,7 +14,7 @@ export function crawlPages(
     const meta = typeof options.metadata == "function"
       ? options.metadata(data)
       : Object.fromEntries(options.metadata.map((key) => [key, data[key]]));
-    const url = options.pathPrefix.replace(/\/$/, "") + data.page.url;
+    const url = options.pathPrefix + data.page.url;
     pages.set(url, { terms, meta });
   });
   return pages;

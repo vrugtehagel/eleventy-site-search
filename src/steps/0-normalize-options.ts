@@ -8,7 +8,7 @@ import {
 const defaults: EleventySiteSearchOptions = {
   manual: false,
   metadata: ["title"],
-  pathPrefix: "/",
+  pathPrefix: "",
   rootElements: "article",
   lang: "en",
   contentTransforms: DefaultContentTransforms,
@@ -55,10 +55,10 @@ export function normalizeOptions(
   assertType("logDatabaseEntries", "boolean");
   assertType("urlRelevance", "number");
 
-  if (normalized.pathPrefix.startsWith("/")) {
+  if (!normalized.pathPrefix.startsWith("/")) {
     normalized.pathPrefix = "/" + normalized.pathPrefix;
   }
-  if (normalized.pathPrefix.endsWith("/")) {
+  while (normalized.pathPrefix.endsWith("/")) {
     normalized.pathPrefix = normalized.pathPrefix.slice(0, -1);
   }
   if (normalized.frequencyBias < 0 || normalized.frequencyBias > 1) {

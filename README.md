@@ -52,7 +52,7 @@ export default function (eleventyConfig) {
   each page. Defaults to `["title"]`.
 - `pathPrefix`: If your site lives under a specific path on a domain, not at the
   top level of the domain, provide the path to your site here. This makes sure
-  the search results contain correct URLs. Defaults to `"/"`.
+  the search results contain correct URLs. Defaults to `""`.
 - `rootElements`: The elements to read the words from. Generally, things like
   sidebars or navigation menus shouldn't be indexed, so this allows for more
   specific control on what to index. This should be a CSS selector. If nothing
@@ -102,7 +102,8 @@ export default function (eleventyConfig) {
   `"integrated"` mode. On the other hand, you might want to prioritize manual
   terms (you did manually specify them after all). This means generated terms
   are the first to get kicked out, and manually specified terms are guaranteed
-  to end up in the index. Defaults to `"integrated"`.
+  to end up in the index. For this behavior, specify `"additive"`. Defaults to
+  `"integrated"`.
 - `minTerms`: Specifies a minimum number of terms to index. This is useful if a
   page doesn't score high on any word in particular, causing it to be searchable
   even if the scores are lower than the cutoff score. Defaults to `10`.
