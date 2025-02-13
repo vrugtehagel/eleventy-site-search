@@ -30,11 +30,18 @@ export const WordTransform = {
     if (suffix.length >= 3) return word;
     return main;
   },
+
+  /** Removes numbers. */
+  NoNumbers: (word: string): string => {
+    if (Number.isNaN(Number(word))) return word;
+    return "";
+  },
 };
 
 /** The default word transforms. */
 export const DefaultWordTransforms = [
   WordTransform.NoApostrophes,
+  WordTransform.NoNumbers,
 ];
 
 /** A collection of predefined weights, used in the defaults */

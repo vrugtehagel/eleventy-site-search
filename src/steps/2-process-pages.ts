@@ -52,6 +52,7 @@ export function processPages(
           wordTransforms.set(segment, transformed);
         }
         const word = wordTransforms.get(segment);
+        if (!word) continue;
         const seen = counts.get(word) ?? 0;
         counts.set(word, seen + weight);
         total += weight;

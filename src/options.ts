@@ -51,12 +51,13 @@ export type PagesProcessingOptions = {
   contentTransforms: Array<(content: string) => string>;
 
   /** Similar to `contentTransforms`, but applies to every word found. By
-   * default, it removes the tail of words with an apostrophe. For some words,
-   * like "it's", that doesn't matter much because those types of words are
-   * unlikely to score high anyway, but for things like "Ghandi's mind" you
-   * would want "Ghandi" to rank without the "'s" even though that technically
-   * is one word. The defaults are very focused on English; probably you should
-   *  overwrite them if you are using a different language. */
+   * default, it removes numbers as well as the tail of words with an
+   * apostrophe. For some words, like "it's", that doesn't matter much because
+   * those types of words are unlikely to score high anyway, but for things
+   * like "Ghandi's mind" you would want "Ghandi" to rank without the "'s" even
+   * though that technically is one word. The defaults are very focused on
+   * English; probably you should overwrite them if you are using a different
+   * language. */
   wordTransforms: Array<(word: string) => string>;
 
   /** An object mapping a CSS selector to a score multiplier. By default, a set

@@ -10,7 +10,10 @@ declare const MAX_RESULTS: number;
 declare const LOG_DB_ENTRIES: boolean;
 declare const PATH_PREFIX: string;
 
-if (LOG_DB_ENTRIES) {
+const isWorker = globalThis.WorkerGlobalScope &&
+  globalThis instanceof WorkerGlobalScope;
+
+if (!isWorker && LOG_DB_ENTRIES) {
   const path = PATH_PREFIX + globalThis.location.pathname;
   const entry = db.find((entry) => entry.info.url == path);
   if (!entry) {
@@ -59,28 +62,28 @@ async function mainThreadSearch(query: string): Promise<PageInfo[]> {
 const pending: Record<string, (results: PageInfo[]) => void> = {};
 let worker = null;
 if (!USE_MAIN_THREAD) {
-  if (globalThis.WorkerGlobalScope && globalThis instanceof WorkerGlobalScope) {
+  if (isWorker) {
     globalThis.addEventListener("message", async (event: MessageEvent) => {
-      const { query, uuid } = event.data;
+      const { query, uid } = event.data;
       const results = await mainThreadSearch(query);
-      globalThis.postMessage({ uuid, results });
+      globalThis.postMessage({ uid, results });
     });
   } else {
     worker = new Worker(import.meta.url, { type: "module" });
     worker.addEventListener("message", (event: MessageEvent) => {
-      const { uuid, results } = event.data;
-      pending[uuid]?.(results);
-      delete pending[uuid];
+      const { uid, results } = event.data;
+      pending[uid]?.(results);
+      delete pending[uid];
     });
   }
 }
 
 async function workerSearch(query: string): Promise<PageInfo[]> {
-  const uuid = crypto.randomUUID();
+  const uid = Math.random().toString(16).slice(2);
   const promise: Promise<PageInfo[]> = new Promise((resolve) => {
-    pending[uuid] = resolve;
+    pending[uid] = resolve;
   });
-  worker!.postMessage({ uuid, query });
+  worker!.postMessage({ uid, query });
   return promise;
 }
 
