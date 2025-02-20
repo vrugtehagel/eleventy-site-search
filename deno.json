@@ -1,6 +1,6 @@
 {
   "name": "@vrugtehagel/eleventy-site-search",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "exports": "./mod.ts",
   "publish": {
     "include": ["src/**", "mod.ts", "README.md"]
