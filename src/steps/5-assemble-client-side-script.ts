@@ -9,7 +9,7 @@ export async function assembleClientSideScript(
   outputDirectory: string,
   options: ClientSideScriptOptions,
 ): Promise<void> {
-  console.log(import.meta, process.cwd?.());
+  console.log(import.meta)
   const here = await fs.realpath(import.meta.filename!);
   const { pathname } = new URL("../client/search.ts", `file://${here}`);
   const clientSideScript = await fs.readFile(pathname, { encoding: "utf8" });
