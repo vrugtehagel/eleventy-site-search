@@ -9,7 +9,7 @@ export async function assembleClientSideScript(
   outputDirectory: string,
   options: ClientSideScriptOptions,
 ): Promise<void> {
-  const { pathname } = new URL("../client/search.ts", import.meta.url);
+  const { pathname } = new URL(import.meta.resolve("../client/search.ts"));
   const clientSideScript = await fs.readFile(pathname, { encoding: "utf8" });
   const stringifiedDB = JSON.stringify(db)
     .replaceAll(/(\$(?={)|`|\\")/g, "\\$1");

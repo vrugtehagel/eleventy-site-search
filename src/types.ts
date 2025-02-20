@@ -1,5 +1,5 @@
-/** Your `eleventyConfig` object. You should need to pass this manually, this
- * is handled automatically with `.addPlugin(EleventySiteSearch, {…})`. */
+/** Your `eleventyConfig` object. You don't need to pass this manually, this
+ * is handled by Eleventy through `.addPlugin(EleventySiteSearch, {…})`. */
 export type EleventyConfig = any;
 
 /** The argument one might receive in an `eleventyComputed` callback. */
