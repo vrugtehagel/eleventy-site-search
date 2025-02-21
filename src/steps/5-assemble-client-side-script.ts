@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import * as esbuild from "npm:esbuild@^0.24";
+import { clientSource } from "../client/source.js";
 
 import type { ClientSideScriptOptions } from "../options.ts";
 import type { DatabaseEntry } from "../types.ts";
@@ -9,13 +10,11 @@ export async function assembleClientSideScript(
   outputDirectory: string,
   options: ClientSideScriptOptions,
 ): Promise<void> {
-  const { pathname } = new URL(import.meta.resolve("../client/search.ts"));
-  const clientSideScript = await fs.readFile(pathname, { encoding: "utf8" });
   const stringifiedDB = JSON.stringify(db)
     .replaceAll(/(\$(?={)|`|\\")/g, "\\$1");
   const source = `
     const db = JSON.parse(\`${stringifiedDB}\`);
-    ${clientSideScript}
+    ${clientSource}
   `;
   const transpiled = await esbuild.transform(source, {
     loader: "ts",
