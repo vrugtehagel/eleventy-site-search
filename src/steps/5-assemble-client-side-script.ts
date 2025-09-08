@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import * as esbuild from "npm:esbuild@^0.24";
+import * as esbuild from "npm:esbuild@^0.25";
 import { clientSource } from "../client/source.js";
 
 import type { ClientSideScriptOptions } from "../options.ts";

@@ -1,4 +1,4 @@
-import * as HTMLParser from "npm:node-html-parser@^6.1";
+import * as HTMLParser from "npm:node-html-parser@^7.0";
 
 import type { PagesProcessingOptions } from "../options.ts";
 import type { ContentPage, EleventyConfig, Tally } from "../types.ts";
