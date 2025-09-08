@@ -1,5 +1,5 @@
 const diacritics =
-  /\u{b7}\u{2bc}\u{2be}\u{300}-\u{304}\u{306}-\u{30c}\u{30f}\u{311}\u{31b}\u{323}-\u{328}\u{32d}\u{32e}\u{330}\u{331}/gu;
+  /[\u{b7}\u{2bc}\u{2be}\u{300}-\u{304}\u{306}-\u{30c}\u{30f}\u{311}\u{31b}\u{323}-\u{328}\u{32d}\u{32e}\u{330}\u{331}]/gu;
 
 /** A list of basic content transforms. These apply to the content of a whole
  * document. */
