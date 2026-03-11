@@ -14,6 +14,7 @@ export function processPages(
     ? new Intl.Segmenter(options.lang, { granularity: "word" })
     : new FallbackSegmenter();
   config.addTransform("site-search", function (this: any, content: string) {
+    if (typeof this.page.outputPath != "string") return content;
     if (!this.page.outputPath.endsWith(".html")) return content;
     const url = options.pathPrefix.replace(/^\//, "") + this.page.url;
     const page = pages.get(url);
