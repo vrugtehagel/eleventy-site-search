@@ -27,14 +27,14 @@ export function processPages(
       let content = "";
       for (const root of roots) {
         for (const element of root.querySelectorAll(selector)) {
-          content += element.textContent + " ";
+          content += element.structuredText + " ";
           element.replaceWith(" ");
         }
       }
       const weightedContent: [string, number] = [content, weight];
       return weightedContent;
     }).filter(([_content, weight]) => weight > 0);
-    const leftoverContent = roots.map((root) => root.textContent).join(" ");
+    const leftoverContent = roots.map((root) => root.structuredText).join(" ");
     weights.push([leftoverContent, 1]);
     const counts = new Map();
     let total = 0;
